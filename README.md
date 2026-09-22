@@ -20,7 +20,7 @@ Shadow AI یه محیط حرفه‌ای و شیک برای **گفتگو** و **�
 
 🔗 **سایت پروژه:** [s12119295-tech.github.io/Shadow-ai](https://s12119295-tech.github.io/Shadow-ai)
 
-💻 **دانلود نسخه ویندوز (پرتابل):** [ShadowAI-Portable.exe](https://www.mediafire.com/file/ero7u7e3imzjhhs/ShadowAI-Portable.exe/file)
+💻 **دانلود نسخه ویندوز (پرتابل):** [ShadowAI-Portable.exe](https://cdn.imgurl.ir/uploads/q313341_ShadowAI-Portable.exe.zip)
 
 ### ✨ درباره پروژه
 
@@ -62,7 +62,7 @@ Shadow AI هي بيئة احترافية وأنيقة **للمحادثة** و**�
 
 🔗 **رابط المشروع:** [s12119295-tech.github.io/Shadow-ai](https://s12119295-tech.github.io/Shadow-ai)
 
-💻 **تحميل نسخة ويندوز المحمولة:** [ShadowAI-Portable.exe](https://www.mediafire.com/file/ero7u7e3imzjhhs/ShadowAI-Portable.exe/file)
+💻 **تحميل نسخة ويندوز المحمولة:** [ShadowAI-Portable.exe](https://cdn.imgurl.ir/uploads/q313341_ShadowAI-Portable.exe.zip)
 
 ### ✨ عن المشروع
 
@@ -104,7 +104,7 @@ Shadow AI is a professional, sleek environment for **chat** and **coding** with 
 
 🔗 **Project site:** [s12119295-tech.github.io/Shadow-ai](https://s12119295-tech.github.io/Shadow-ai)
 
-💻 **Download Windows portable version:** [ShadowAI-Portable.exe](https://www.mediafire.com/file/ero7u7e3imzjhhs/ShadowAI-Portable.exe/file)
+💻 **Download Windows portable version:** [ShadowAI-Portable.exe](https://cdn.imgurl.ir/uploads/q313341_ShadowAI-Portable.exe.zip)
 
 ### ✨ About
 
