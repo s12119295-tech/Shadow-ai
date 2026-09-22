@@ -401,6 +401,10 @@ html[lang="en"] .sec-head h2, html[lang="en"] .about-copy h2, html[lang="en"] .c
 .model-orb { width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle at 35% 28%, #fff, var(--h1) 38%, var(--h2) 78%); box-shadow: 0 0 30px -4px var(--h1); transition: transform .5s var(--ease); }
 .model:hover .model-orb { transform: scale(1.12) rotate(12deg); }
 .model h3 { font-size: 1.15rem; font-weight: 700; line-height: 1.4; font-family: var(--font-en); letter-spacing: -.01em; }
+.model-skel { min-height: 172px; background: linear-gradient(100deg, var(--glass) 40%, var(--hi) 50%, var(--glass) 60%); background-size: 220% 100%; animation: skel 1.4s ease-in-out infinite; }
+@keyframes skel { 0% { background-position: 200% 0; } 100% { background-position: -20% 0; } }
+.models-err { text-align: center; color: var(--muted); font-size: .9rem; margin-top: 16px; }
+.models-err[hidden] { display: none; }
 .badges { display: flex; flex-wrap: wrap; gap: 8px; }
 .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: .82rem; font-weight: 500; color: var(--accent); background: rgba(140, 120, 255, .12); border: 1px solid var(--line); }
 
@@ -623,7 +627,7 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
       <li><a href="#models" data-spy="models" data-i18n="nav.models">مدل‌ها</a></li>
       <li><a href="#pricing" data-spy="pricing" data-i18n="nav.pricing">قیمت‌گذاری</a></li>
       <li><a href="#about" data-spy="about" data-i18n="nav.about">درباره ما</a></li>
-      <li><a href="chat.html" data-i18n="nav.chat">چت</a></li>
+      <li><a href="chat/index.html" data-i18n="nav.chat">چت</a></li>
     </ul>
 
     <div class="nav-actions">
@@ -633,7 +637,7 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
       </button>
       <button class="icon-btn lang-btn" id="langBtn" type="button" data-i18n-aria="act.lang" aria-label="تغییر زبان"><span data-i18n="lang.btn">EN</span></button>
       <button class="btn btn-ghost nav-cta" id="loginBtn" type="button" data-i18n="act.login">ورود</button>
-      <a class="btn btn-primary nav-cta" href="chat.html" data-i18n="act.start">شروع کنید</a>
+      <a class="btn btn-primary nav-cta" href="chat/index.html" data-i18n="act.start">شروع کنید</a>
       <button class="burger icon-btn" id="burger" type="button" aria-expanded="false" aria-controls="drawer" data-i18n-aria="act.menu" aria-label="باز کردن منو">
         <span></span><span></span><span></span>
       </button>
@@ -654,11 +658,11 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
     <li><a href="#models" data-i18n="nav.models">مدل‌ها</a></li>
     <li><a href="#pricing" data-i18n="nav.pricing">قیمت‌گذاری</a></li>
     <li><a href="#about" data-i18n="nav.about">درباره ما</a></li>
-    <li><a href="chat.html" data-i18n="nav.chat">چت</a></li>
+    <li><a href="chat/index.html" data-i18n="nav.chat">چت</a></li>
   </ul>
   <div class="drawer-actions">
     <button class="btn btn-ghost" id="loginBtn2" type="button" data-i18n="act.login">ورود</button>
-    <a class="btn btn-primary" href="chat.html" data-i18n="act.start">شروع کنید</a>
+    <a class="btn btn-primary" href="chat/index.html" data-i18n="act.start">شروع کنید</a>
   </div>
 </aside>
 
@@ -671,7 +675,7 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
       <h1 data-i18n="hero.title">هوش مصنوعی، در سایه‌ی خلاقیت تو.</h1>
       <p class="lead" data-i18n="hero.sub">Shadow AI محیطی حرفه‌ای برای گفتگو و کدنویسی با مدل‌های قدرتمند هوش مصنوعی است.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary btn-lg" href="chat.html" data-i18n="hero.cta1">شروع گفتگو</a>
+        <a class="btn btn-primary btn-lg" href="chat/index.html" data-i18n="hero.cta1">شروع گفتگو</a>
         <a class="btn btn-ghost btn-lg" href="#models" data-i18n="hero.cta2">مشاهده مدل‌ها</a>
       </div>
       <p class="hero-note" data-i18n="hero.note">دسترسی به مدل‌ها با خرید بسته توکن انجام می‌شود.</p>
@@ -793,34 +797,12 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
       <p data-i18n="models.sub">یکی از مدل‌ها را انتخاب کنید. هر سه مدل برای گفتگو و کدنویسی در دسترس‌اند.</p>
     </header>
 
-    <div class="model-grid" id="modelGrid">
-      <article class="model glass" data-model="DeepSeek V4 Flash 0731" style="--h1:#8b6cff;--h2:#3a6ff0">
-        <span class="model-orb" aria-hidden="true"></span>
-        <h3 class="ltr">DeepSeek V4 Flash 0731</h3>
-        <div class="badges">
-          <span class="badge"><svg width="14" height="14" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="badge.chat">گفتگو</span></span>
-          <span class="badge"><svg width="14" height="14" aria-hidden="true"><use href="#i-code"/></svg><span data-i18n="badge.code">کدنویسی</span></span>
-        </div>
-      </article>
-
-      <article class="model glass" data-model="GLM 5.3 Flash" style="--h1:#22d3ee;--h2:#5b7bff">
-        <span class="model-orb" aria-hidden="true"></span>
-        <h3 class="ltr">GLM 5.3 Flash</h3>
-        <div class="badges">
-          <span class="badge"><svg width="14" height="14" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="badge.chat">گفتگو</span></span>
-          <span class="badge"><svg width="14" height="14" aria-hidden="true"><use href="#i-code"/></svg><span data-i18n="badge.code">کدنویسی</span></span>
-        </div>
-      </article>
-
-      <article class="model glass" data-model="MiniMax M2.7" style="--h1:#c084fc;--h2:#6d5cf6">
-        <span class="model-orb" aria-hidden="true"></span>
-        <h3 class="ltr">MiniMax M2.7</h3>
-        <div class="badges">
-          <span class="badge"><svg width="14" height="14" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="badge.chat">گفتگو</span></span>
-          <span class="badge"><svg width="14" height="14" aria-hidden="true"><use href="#i-code"/></svg><span data-i18n="badge.code">کدنویسی</span></span>
-        </div>
-      </article>
+    <div class="model-grid" id="modelGrid" aria-live="polite">
+      <article class="model glass model-skel" aria-hidden="true"></article>
+      <article class="model glass model-skel" aria-hidden="true"></article>
+      <article class="model glass model-skel" aria-hidden="true"></article>
     </div>
+    <p class="models-err" id="modelsErr" hidden data-i18n="models.err">مدل‌ها لود نشدند.</p>
   </div>
 </section>
 
@@ -906,7 +888,7 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
       <h2 data-i18n="cta.title">آماده‌اید گفتگو را شروع کنید؟</h2>
       <p data-i18n="cta.sub">یک بسته توکن انتخاب کنید و همین حالا شروع کنید.</p>
       <div class="hero-cta center">
-        <a class="btn btn-primary btn-lg" href="chat.html" data-i18n="hero.cta1">شروع گفتگو</a>
+        <a class="btn btn-primary btn-lg" href="chat/index.html" data-i18n="hero.cta1">شروع گفتگو</a>
         <a class="btn btn-ghost btn-lg" href="#pricing" data-i18n="nav.pricing">قیمت‌گذاری</a>
       </div>
     </div>
@@ -926,7 +908,7 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
       <li><a href="#features" data-i18n="nav.features">قابلیت‌ها</a></li>
       <li><a href="#models" data-i18n="nav.models">مدل‌ها</a></li>
       <li><a href="#pricing" data-i18n="nav.pricing">قیمت‌گذاری</a></li>
-      <li><a href="chat.html" data-i18n="nav.chat">چت</a></li>
+      <li><a href="chat/index.html" data-i18n="nav.chat">چت</a></li>
     </ul>
   </div>
   <div class="container foot-bottom">
@@ -975,6 +957,44 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
   };
 
   /* ---------------------------------------------------------
+     Models — loaded automatically from the API base URL
+     --------------------------------------------------------- */
+  const SUPABASE_URL = 'https://kmjfzufrjmxdkgqnectd.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImttamZ6dWZyam14ZGtncW5lY3RkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5OTE2ODQsImV4cCI6MjEwNTU2NzY4NH0.wse0ffsl-P9-DhA7YUngD8XXF0SEbxqbmv0avIpnY6U';
+  const FN_URL = SUPABASE_URL + '/functions/v1/shadow-chat';
+  const MODEL_COLORS = [
+    ['#8b6cff', '#3a6ff0'], ['#22d3ee', '#5b7bff'], ['#c084fc', '#6d5cf6'],
+    ['#34d399', '#22a3ee'], ['#f472b6', '#8b6cff'], ['#fbbf24', '#f472b6'],
+  ];
+  async function loadModels() {
+    const grid = document.getElementById('modelGrid'), errEl = document.getElementById('modelsErr');
+    try {
+      const r = await fetch(FN_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY, 'apikey': SUPABASE_ANON_KEY },
+        body: JSON.stringify({ action: 'public_models' }),
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !Array.isArray(j.models) || !j.models.length) throw new Error('models');
+      grid.innerHTML = j.models.map((m, i) => {
+        const [h1, h2] = MODEL_COLORS[i % MODEL_COLORS.length];
+        const name = (m.name || m.id || '').replace(/[<>]/g, '');
+        return `<article class="model glass" data-model="${name}" style="--h1:${h1};--h2:${h2}">` +
+          `<span class="model-orb" aria-hidden="true"></span>` +
+          `<h3 class="ltr">${name}</h3>` +
+          `<div class="badges">` +
+          `<span class="badge"><svg width="14" height="14" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="badge.chat">${t('badge.chat')}</span></span>` +
+          `<span class="badge"><svg width="14" height="14" aria-hidden="true"><use href="#i-code"/></svg><span data-i18n="badge.code">${t('badge.code')}</span></span>` +
+          `</div></article>`;
+      }).join('');
+      errEl.hidden = true;
+    } catch {
+      grid.innerHTML = '';
+      errEl.hidden = false;
+    }
+  }
+
+  /* ---------------------------------------------------------
      Translations
      --------------------------------------------------------- */
   const I18N = {
@@ -1003,7 +1023,7 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
       'feat2.d': 'کد بنویسید، خطاها را بررسی کنید، مشکلات را پیدا کنید و پروژه‌های خود را سریع‌تر توسعه دهید.',
       'models.title': 'مدل‌های Shadow AI',
       'models.sub': 'هر سه مدل برای گفتگو و کدنویسی در دسترس‌اند.',
-      'badge.chat': 'گفتگو', 'badge.code': 'کدنویسی',
+      'badge.chat': 'گفتگو', 'badge.code': 'کدنویسی', 'models.err': 'مدل‌ها لود نشدند. دوباره امتحان کن.',
       'pricing.title': 'پلن‌های Shadow AI',
       'pricing.desc': 'برای استفاده از Shadow AI، یکی از بسته‌های توکن را انتخاب کنید.',
       'pricing.note': 'همه بسته‌ها پولی هستند.',
@@ -1058,7 +1078,7 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
       'feat2.d': 'Write code, review errors, find problems and build your projects faster.',
       'models.title': 'Shadow AI models',
       'models.sub': 'All three models are available for chat and coding.',
-      'badge.chat': 'Chat', 'badge.code': 'Coding',
+      'badge.chat': 'Chat', 'badge.code': 'Coding', 'models.err': 'Could not load models. Try again.',
       'pricing.title': 'Shadow AI plans',
       'pricing.desc': 'To use Shadow AI, choose one of the token packages.',
       'pricing.note': 'All packages are paid.',
@@ -1411,6 +1431,7 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
      Init
      --------------------------------------------------------- */
   applyLang(lang, false);
+  loadModels();
   sizeParticles();
   readParticleColor();
   startParticles();
