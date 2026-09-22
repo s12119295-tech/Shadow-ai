@@ -164,11 +164,29 @@ html[lang="en"] .lang-btn { font-family: var(--font-fa); }
 .conv-list { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; margin-inline: -6px; padding-inline: 6px; }
 .grp h3 { padding: 10px 10px 4px; font-size: .78rem; font-weight: 500; color: var(--muted); }
 .conv-row { position: relative; display: flex; align-items: center; }
-.conv { flex: 1; min-width: 0; text-align: start; background: none; border: 0; padding: 9px 12px; padding-inline-end: 40px; border-radius: 14px; font-size: .92rem; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); transition: background-color .2s; }
+.conv { flex: 1; min-width: 0; text-align: start; background: none; border: 0; padding: 9px 12px; padding-inline-end: 118px; border-radius: 14px; font-size: .92rem; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); transition: background-color .2s; }
 .conv:hover { background: var(--hi); }
 .conv[aria-current="true"] { background: rgba(140, 120, 255, .18); }
+.conv-ops { position: absolute; inset-inline-end: 4px; display: flex; align-items: center; gap: 1px; opacity: 0; transition: opacity .2s; }
+.conv-row:hover .conv-ops, .conv-row:focus-within .conv-ops, .conv-ops:focus-within { opacity: 1; }
+.conv-op { width: 28px; height: 28px; display: grid; place-items: center; border: 0; border-radius: 9px; background: none; color: var(--muted); transition: color .2s, background-color .2s; }
+.conv-op:hover { color: var(--text); background: var(--hi); }
+.conv-op.danger:hover { color: var(--err); }
+.conv-op[aria-pressed="true"] { color: var(--h1, #8b6cff); }
+.conv-row.pinned .conv { padding-inline-start: 26px; }
+.conv-row.pinned::before { content: ""; position: absolute; inset-inline-start: 10px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--h1, #8b6cff); }
+.conv-rename-input { flex: 1; min-width: 0; background: var(--hi); border: 1px solid var(--line-2); border-radius: 12px; padding: 8px 12px; font: inherit; font-size: .92rem; color: var(--text); outline: none; }
 .conv-del { position: absolute; inset-inline-end: 4px; width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 10px; background: none; color: var(--muted); opacity: 0; transition: opacity .2s, color .2s, background-color .2s; }
-.conv-row:hover .conv-del, .conv-del:focus-visible, .conv-row:focus-within .conv-del { opacity: 1; }
+.conv-row:hover .conv-del, .conv-del:focus-visible, .conv-row:focus-within .conv-ops { position: absolute; inset-inline-end: 4px; display: flex; align-items: center; gap: 1px; opacity: 0; transition: opacity .2s; }
+.conv-row:hover .conv-ops, .conv-row:focus-within .conv-ops, .conv-ops:focus-within { opacity: 1; }
+.conv-op { width: 28px; height: 28px; display: grid; place-items: center; border: 0; border-radius: 9px; background: none; color: var(--muted); transition: color .2s, background-color .2s; }
+.conv-op:hover { color: var(--text); background: var(--hi); }
+.conv-op.danger:hover { color: var(--err); }
+.conv-op[aria-pressed="true"] { color: var(--h1, #8b6cff); }
+.conv-row.pinned .conv { padding-inline-start: 26px; }
+.conv-row.pinned::before { content: ""; position: absolute; inset-inline-start: 10px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--h1, #8b6cff); }
+.conv-rename-input { flex: 1; min-width: 0; background: var(--hi); border: 1px solid var(--line-2); border-radius: 12px; padding: 8px 12px; font: inherit; font-size: .92rem; color: var(--text); outline: none; }
+.conv-del { opacity: 1; }
 .conv-del:hover { color: var(--err); background: var(--hi); }
 @media (hover: none) { .conv-del { opacity: .7; } }
 .conv-empty { padding: 18px 12px; color: var(--muted); font-size: .9rem; }
@@ -267,6 +285,16 @@ html[lang="en"] .lang-btn { font-family: var(--font-fa); }
 .msg.fresh { animation: msgIn .45s var(--ease) both; }
 @keyframes msgIn { from { opacity: 0; transform: translateY(10px); } }
 .msg.user { justify-content: flex-end; }
+.msg.user { position: relative; }
+.msg.user .u-edit { position: absolute; inset-inline-start: -34px; top: 6px; width: 30px; height: 30px; display: grid; place-items: center; border: 0; border-radius: 10px; background: none; color: var(--muted); opacity: 0; transition: opacity .2s, color .2s, background-color .2s; }
+.msg.user:hover .u-edit, .u-edit:focus-visible { opacity: 1; }
+.msg.user .u-edit:hover { color: var(--text); background: var(--hi); }
+@media (max-width: 720px) { .msg.user .u-edit { inset-inline-start: auto; inset-inline-end: 0; top: -26px; opacity: .55; } }
+.msg.user.edit-mode { justify-content: flex-end; }
+.edit-box { max-width: min(88%, 620px); width: 100%; display: flex; flex-direction: column; gap: 8px; }
+.edit-ta { width: 100%; min-height: 60px; padding: 10px 14px; border-radius: 18px; border: 1px solid var(--line-2); background: var(--hi); color: var(--text); font: inherit; resize: none; outline: none; }
+.edit-ta:focus { border-color: var(--h1, #8b6cff); }
+.edit-ops { display: flex; justify-content: flex-end; gap: 8px; }
 .bubble { max-width: min(88%, 620px); padding: 10px 16px; border-radius: 22px; border-end-end-radius: 7px; background: var(--user-bg); border: 1px solid var(--line-2); white-space: pre-wrap; overflow-wrap: anywhere; }
 .files { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .file-chip { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; padding: 2px 10px; border-radius: 999px; font-size: .78rem; background: var(--hi); border: 1px solid var(--line); direction: ltr; }
@@ -301,6 +329,9 @@ html[lang="en"] .lang-btn { font-family: var(--font-fa); }
 .meta .who { margin-inline-end: auto; padding-inline: 8px; font-size: .74rem; color: var(--muted); font-family: var(--font-en); direction: ltr; }
 .act { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; border: 0; background: none; color: var(--muted); transition: background-color .2s, color .2s; }
 .act:hover { background: var(--hi); color: var(--text); }
+.regen-pop { position: fixed; z-index: 700; min-width: 190px; max-width: 260px; padding: 6px; border-radius: 16px; display: flex; flex-direction: column; gap: 2px; max-height: 260px; overflow-y: auto; }
+.regen-pop button { text-align: start; padding: 9px 12px; border-radius: 11px; border: 0; background: none; color: var(--text); font: inherit; font-size: .88rem; font-family: var(--font-en); direction: ltr; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.regen-pop button:hover, .regen-pop button:focus-visible { background: var(--hi); outline: none; }
 .act[aria-pressed="true"] { color: var(--accent); background: rgba(140, 120, 255, .16); }
 
 .think { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 22px; border-start-start-radius: 7px; background: var(--hi); border: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
@@ -510,6 +541,9 @@ html.calm .dots i { animation: none; opacity: .8; }
     <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h8M18 7h2M4 17h2M12 17h8"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></symbol>
     <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L18.5 9.5a2.1 2.1 0 0 0-3-3L5 17v3Z"/><path d="M13.5 7 17 10.5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4.5h6l-.7 6.3L18 14v1.5H6V14l3.7-3.2Z"/><path d="M12 15.5V20"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4"/><path d="M5 18.5v1a1.5 1.5 0 0 0 1.5 1.5h11a1.5 1.5 0 0 0 1.5-1.5v-1"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.5-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></symbol>
     <symbol id="i-wand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M17.8 6.2 19 5M12.2 6.2 11 5M3 21l9-9"/></symbol>
     <symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v3M4 7.5V17a2 2 0 0 0 2 2h13a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H6.5A2.5 2.5 0 0 1 4 7.5z"/><circle cx="16" cy="13.5" r="1" fill="currentColor"/></symbol>
@@ -904,7 +938,7 @@ html.calm .dots i { animation: none; opacity: .8; }
       'adm.e.exists': 'این نام کاربری قبلاً وجود دارد.', 'adm.e.bad_username': 'نام کاربری باید ۳ تا ۳۲ کاراکتر انگلیسی، عدد یا . _ - باشد.', 'adm.e.weak_password': 'رمز عبور باید حداقل ۶ کاراکتر باشد.',
       'adm.e.bad_key': 'فرمت کلید API درست نیست.', 'adm.e.invalid_key': 'این کلید API نامعتبر است.', 'adm.e.cant_disable_self': 'نمی‌توانی حساب خودت را غیرفعال کنی.', 'adm.e.cant_delete_self': 'این حساب قابل حذف نیست.',
       'adm.e.cant_delete_admin': 'این حساب قابل حذف نیست.', 'adm.e.forbidden': 'دسترسی نداری.', 'adm.e.generic': 'خطایی رخ داد. دوباره تلاش کن.',
-      'err.nokey': 'برای حساب تو هنوز API تعریف نشده است. با مدیر تماس بگیر.', 'err.keyinvalid': 'API حساب تو نامعتبر است. با مدیر تماس بگیر.', 'act.dir': 'تغییر جهت', 'set.dir': 'جهت صفحه', 'dir.rtl': 'راست‌چین', 'dir.ltr': 'چپ‌چین', 'set.name': 'اسمت چیه؟', 'set.namedesc': 'اگر پر کنی، سایه با همین اسم صدات می‌زند.', 'set.nameph': 'مثلاً امیرعلی', 'set.title': 'تنظیمات', 'set.theme': 'تم', 'set.dark': 'تاریک', 'set.light': 'روشن', 'set.lang': 'زبان',
+      'err.nokey': 'برای حساب تو هنوز API تعریف نشده است. با مدیر تماس بگیر.', 'err.keyinvalid': 'API حساب تو نامعتبر است. با مدیر تماس بگیر.', 'side.pin': 'سنجاق کردن', 'side.unpin': 'برداشتن سنجاق', 'side.pinned': 'سنجاق‌شده', 'side.rename': 'تغییرنام', 'side.export': 'خروجی گفتگو', 'toast.renamed': 'نام گفتگو تغییر کرد', 'toast.exported': 'گفتگو دانلود شد', 'toast.pinned': 'سنجاق شد', 'toast.unpinned': 'سنجاق برداشته شد', 'msg.edit': 'ویرایش پیام', 'msg.save': 'ذخیره و ارسال', 'msg.cancel': 'انصراف', 'msg.regenwith': 'بازتولید با مدل دیگر', 'act.dir': 'تغییر جهت', 'set.dir': 'جهت صفحه', 'dir.rtl': 'راست‌چین', 'dir.ltr': 'چپ‌چین', 'set.name': 'اسمت چیه؟', 'set.namedesc': 'اگر پر کنی، سایه با همین اسم صدات می‌زند.', 'set.nameph': 'مثلاً امیرعلی', 'set.title': 'تنظیمات', 'set.theme': 'تم', 'set.dark': 'تاریک', 'set.light': 'روشن', 'set.lang': 'زبان',
       'set.data': 'داده‌ها', 'set.datadesc': 'گفتگوها فقط در همین مرورگر ذخیره می‌شوند.', 'set.clear': 'پاک‌سازی گفتگوها',
       'toast.model': 'مدل تغییر کرد.', 'toast.code': 'کد کپی شد', 'toast.text': 'متن کپی شد',
       'toast.new': 'گفتگوی جدید ساخته شد', 'toast.pkg': 'بسته انتخاب شد', 'toast.pay': 'پرداخت در نسخه نمایشی فعال نیست.',
@@ -952,7 +986,7 @@ html.calm .dots i { animation: none; opacity: .8; }
       'adm.e.exists': 'That username already exists.', 'adm.e.bad_username': 'Username must be 3–32 characters: letters, digits, . _ -', 'adm.e.weak_password': 'Password must be at least 6 characters.',
       'adm.e.bad_key': 'The API key format looks wrong.', 'adm.e.invalid_key': 'This API key is invalid.', 'adm.e.cant_disable_self': "You can't disable your own account.", 'adm.e.cant_delete_self': "This account can't be deleted.",
       'adm.e.cant_delete_admin': "This account can't be deleted.", 'adm.e.forbidden': 'Access denied.', 'adm.e.generic': 'Something went wrong. Try again.',
-      'err.nokey': 'No API has been assigned to your account yet. Contact the admin.', 'err.keyinvalid': "Your account's API is invalid. Contact the admin.", 'act.dir': 'Toggle direction', 'set.dir': 'Direction', 'dir.rtl': 'Right-to-left', 'dir.ltr': 'Left-to-right', 'set.name': 'What should I call you?', 'set.namedesc': "If you fill this in, Shadow AI will address you by this name.", 'set.nameph': 'e.g. Alex', 'set.title': 'Settings', 'set.theme': 'Theme', 'set.dark': 'Dark', 'set.light': 'Light', 'set.lang': 'Language',
+      'err.nokey': 'No API has been assigned to your account yet. Contact the admin.', 'err.keyinvalid': "Your account's API is invalid. Contact the admin.", 'side.pin': 'Pin', 'side.unpin': 'Unpin', 'side.pinned': 'Pinned', 'side.rename': 'Rename', 'side.export': 'Export chat', 'toast.renamed': 'Chat renamed', 'toast.exported': 'Chat downloaded', 'toast.pinned': 'Pinned', 'toast.unpinned': 'Unpinned', 'msg.edit': 'Edit message', 'msg.save': 'Save & resend', 'msg.cancel': 'Cancel', 'msg.regenwith': 'Regenerate with another model', 'act.dir': 'Toggle direction', 'set.dir': 'Direction', 'dir.rtl': 'Right-to-left', 'dir.ltr': 'Left-to-right', 'set.name': 'What should I call you?', 'set.namedesc': "If you fill this in, Shadow AI will address you by this name.", 'set.nameph': 'e.g. Alex', 'set.title': 'Settings', 'set.theme': 'Theme', 'set.dark': 'Dark', 'set.light': 'Light', 'set.lang': 'Language',
       'set.data': 'Data', 'set.datadesc': 'Chats are stored only in this browser.', 'set.clear': 'Clear chats',
       'toast.model': 'Model changed.', 'toast.code': 'Code copied', 'toast.text': 'Text copied',
       'toast.new': 'New chat created', 'toast.pkg': 'Package selected', 'toast.pay': 'Payments are not active in the demo version.',
@@ -1238,7 +1272,7 @@ html.calm .dots i { animation: none; opacity: .8; }
   $$('[data-lang-set]').forEach((b) => b.addEventListener('click', () => { if (lang !== b.dataset.langSet) applyLang(b.dataset.langSet, true); }));
   $('#clearData').addEventListener('click', () => {
     abortPending(); busy = false; pendingConv = null;
-    chats = []; activeId = null; persist(); setStatus(); updateSend();
+    chats = []; activeId = null; editingIdx = null; closeRegenPop(); persist(); setStatus(); updateSend();
     renderSidebar(); renderMessages(-1); closeModal(); toast('toast.cleared');
   });
 
@@ -1317,18 +1351,58 @@ html.calm .dots i { animation: none; opacity: .8; }
     if (ts >= start - 6 * 864e5) return 'week';
     return 'older';
   }
+  let renamingId = null;
+  function renderConvRow(c) {
+    const title = esc(L(c.title));
+    if (c.id === renamingId) {
+      return `<div class="conv-row"><input type="text" class="conv-rename-input" data-rename-input="${c.id}" value="${title}" maxlength="60"></div>`;
+    }
+    return `<div class="conv-row${c.pinned ? ' pinned' : ''}"><button type="button" class="conv" data-id="${c.id}"${c.id === activeId ? ' aria-current="true"' : ''} title="${title}">${title}</button>` +
+      `<div class="conv-ops">` +
+      `<button type="button" class="conv-op" data-pin="${c.id}" aria-label="${t(c.pinned ? 'side.unpin' : 'side.pin')}" aria-pressed="${!!c.pinned}" title="${t(c.pinned ? 'side.unpin' : 'side.pin')}">${ico('i-pin', 14)}</button>` +
+      `<button type="button" class="conv-op" data-rename="${c.id}" aria-label="${t('side.rename')}" title="${t('side.rename')}">${ico('i-edit', 14)}</button>` +
+      `<button type="button" class="conv-op" data-export="${c.id}" aria-label="${t('side.export')}" title="${t('side.export')}">${ico('i-download', 14)}</button>` +
+      `<button type="button" class="conv-op danger" data-del="${c.id}" aria-label="${t('side.del')}: ${title}" title="${t('side.del')}">${ico('i-trash', 14)}</button>` +
+      `</div></div>`;
+  }
   function renderSidebar() {
     const q = searchEl.value.trim().toLowerCase();
-    const list = chats.filter((c) => !q || L(c.title).toLowerCase().includes(q)).sort((a, b) => b.updated - a.updated);
+    const list = chats.filter((c) => !q || L(c.title).toLowerCase().includes(q));
     if (!list.length) { convList.innerHTML = `<p class="conv-empty">${t('side.empty')}</p>`; return; }
+    const pinned = list.filter((c) => c.pinned).sort((a, b) => b.updated - a.updated);
+    const rest = list.filter((c) => !c.pinned).sort((a, b) => b.updated - a.updated);
     const G = { today: [], week: [], older: [] };
-    list.forEach((c) => G[groupOf(c.updated)].push(c));
-    convList.innerHTML = ['today', 'week', 'older'].filter((k) => G[k].length).map((k) =>
-      `<div class="grp" role="group" aria-labelledby="g-${k}"><h3 id="g-${k}">${t('side.' + k)}</h3>${G[k].map((c) => {
-        const title = esc(L(c.title));
-        return `<div class="conv-row"><button type="button" class="conv" data-id="${c.id}"${c.id === activeId ? ' aria-current="true"' : ''} title="${title}">${title}</button>` +
-          `<button type="button" class="conv-del" data-del="${c.id}" aria-label="${t('side.del')}: ${title}">${ico('i-trash', 16)}</button></div>`;
-      }).join('')}</div>`).join('');
+    rest.forEach((c) => G[groupOf(c.updated)].push(c));
+    const groups = [];
+    if (pinned.length) groups.push(['pinned', pinned]);
+    ['today', 'week', 'older'].forEach((k) => { if (G[k].length) groups.push([k, G[k]]); });
+    convList.innerHTML = groups.map(([k, arr]) => `<div class="grp" role="group" aria-labelledby="g-${k}"><h3 id="g-${k}">${t('side.' + k)}</h3>${arr.map(renderConvRow).join('')}</div>`).join('');
+  }
+  function startRename(id) {
+    renamingId = id; renderSidebar();
+    const el = convList.querySelector(`[data-rename-input="${id}"]`);
+    if (el) { el.focus(); el.select(); }
+  }
+  function commitRename(id, val) {
+    if (renamingId !== id) return;
+    renamingId = null;
+    const c = chats.find((x) => x.id === id);
+    if (c) { const v = val.trim(); if (v) { c.title = v; persist(); toast('toast.renamed'); } }
+    renderSidebar();
+  }
+  function exportConversation(id) {
+    const c = chats.find((x) => x.id === id);
+    if (!c || !c.messages.length) return;
+    const who = (role) => role === 'user' ? (uname || 'User') : 'Shadow AI';
+    const lines = [`# ${L(c.title)}`, '', `_${new Date(c.updated).toLocaleString(lang === 'fa' ? 'fa-IR' : 'en-GB')}_`, ''];
+    c.messages.forEach((m) => { lines.push(`**${who(m.role)}:**`, '', String(L(m.text) || '').trim(), ''); });
+    const blob = new Blob([lines.join('\n')], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = (L(c.title) || 'chat').slice(0, 50).replace(/[\\/:*?"<>|]/g, '_') + '.md';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    toast('toast.exported');
   }
   searchEl.addEventListener('input', renderSidebar);
   convList.addEventListener('click', (e) => {
@@ -1341,11 +1415,32 @@ html.calm .dots i { animation: none; opacity: .8; }
       persist(); renderSidebar(); renderMessages(-1); toast('toast.del');
       return;
     }
+    const pin = e.target.closest('[data-pin]');
+    if (pin) {
+      const c = chats.find((x) => x.id === pin.dataset.pin);
+      if (c) { c.pinned = !c.pinned; persist(); toast(c.pinned ? 'toast.pinned' : 'toast.unpinned'); }
+      renderSidebar();
+      return;
+    }
+    const ren = e.target.closest('[data-rename]');
+    if (ren) { startRename(ren.dataset.rename); return; }
+    const exp = e.target.closest('[data-export]');
+    if (exp) { exportConversation(exp.dataset.export); return; }
     const b = e.target.closest('[data-id]');
-    if (b) { activeId = b.dataset.id; persist(); renderSidebar(); renderMessages(-1); scrollBottom(); setDrawer(false); }
+    if (b) { activeId = b.dataset.id; editingIdx = null; closeRegenPop(); persist(); renderSidebar(); renderMessages(-1); scrollBottom(); setDrawer(false); }
+  });
+  convList.addEventListener('keydown', (e) => {
+    const inp = e.target.closest('[data-rename-input]');
+    if (!inp) return;
+    if (e.key === 'Enter') { e.preventDefault(); commitRename(inp.dataset.renameInput, inp.value); }
+    else if (e.key === 'Escape') { e.preventDefault(); renamingId = null; renderSidebar(); }
+  });
+  convList.addEventListener('focusout', (e) => {
+    const inp = e.target.closest('[data-rename-input]');
+    if (inp) commitRename(inp.dataset.renameInput, inp.value);
   });
   $('#newChat').addEventListener('click', () => {
-    activeId = null; persist(); setDrawer(false); renderSidebar(); renderMessages(-1);
+    activeId = null; editingIdx = null; closeRegenPop(); persist(); setDrawer(false); renderSidebar(); renderMessages(-1);
     toast('toast.new'); ta.focus();
   });
 
@@ -1354,15 +1449,21 @@ html.calm .dots i { animation: none; opacity: .8; }
      --------------------------------------------------------- */
   const act = (a, icon, label, pressed) =>
     `<button type="button" class="act" data-act="${a}" aria-label="${label}" title="${label}"${(a === 'up' || a === 'down') ? ` aria-pressed="${!!pressed}"` : ''}>${ico(icon, 17)}</button>`;
+  let editingIdx = null;
   function msgHTML(m, i, isLastAi, fresh) {
     const cls = fresh ? ' fresh' : '';
     if (m.role === 'user') {
+      if (i === editingIdx) {
+        return `<article class="msg user edit-mode${cls}" data-i="${i}"><div class="edit-box"><textarea class="edit-ta" data-edit-ta="${i}" rows="2">${esc(L(m.text))}</textarea>` +
+          `<div class="edit-ops"><button type="button" class="btn btn-ghost sm" data-edit-cancel="${i}">${t('msg.cancel')}</button><button type="button" class="btn btn-primary sm" data-edit-save="${i}">${t('msg.save')}</button></div></div></article>`;
+      }
       const files = (m.files && m.files.length) ? `<div class="files">${m.files.map((f) => `<span class="file-chip">${ico('i-clip', 12)}<span>${esc(f)}</span></span>`).join('')}</div>` : '';
-      return `<article class="msg user${cls}"><div class="bubble">${esc(L(m.text))}${files}</div></article>`;
+      return `<article class="msg user${cls}" data-i="${i}"><div class="bubble">${esc(L(m.text))}${files}</div>` +
+        `<button type="button" class="u-edit" data-edit="${i}" aria-label="${t('msg.edit')}" title="${t('msg.edit')}">${ico('i-edit', 15)}</button></article>`;
     }
     return `<article class="msg ai${cls}" data-i="${i}"><div class="avatar" aria-hidden="true"><svg width="20" height="20"><use href="#logo"/></svg></div>` +
       `<div class="ai-body"><div class="md">${renderMD(L(m.text))}</div><div class="meta"><span class="who">${esc(modelName(m.model))}</span>` +
-      `${act('copy', 'i-copy', t('msg.copy'))}${isLastAi ? act('regen', 'i-refresh', t('msg.regen')) : ''}` +
+      `${act('copy', 'i-copy', t('msg.copy'))}${isLastAi ? act('regen', 'i-refresh', t('msg.regen')) + act('regen-menu', 'i-chev', t('msg.regenwith')) : ''}` +
       `${act('up', 'i-up', t('msg.like'), m.fb === 'up')}${act('down', 'i-down', t('msg.dislike'), m.fb === 'down')}</div></div></article>`;
   }
   function thinkingHTML() {
@@ -1377,9 +1478,76 @@ html.calm .dots i { animation: none; opacity: .8; }
   }
   const scrollBottom = () => { scroller.scrollTop = scroller.scrollHeight; };
 
+  function commitEdit(i, val) {
+    const c = active();
+    if (!c) return;
+    const text = val.trim();
+    if (!text) { editingIdx = null; renderMessages(-1); return; }
+    const orig = c.messages[i];
+    if (!orig) return;
+    c.messages = c.messages.slice(0, i);
+    c.messages.push({ role: 'user', text, files: (orig.files || []).slice() });
+    c.updated = Date.now();
+    editingIdx = null;
+    persist(); renderSidebar();
+    respond(c.id, c.messages.length - 1);
+  }
+  function growEditTa(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 220) + 'px'; }
+
+  let regenPop = null;
+  function closeRegenPop() {
+    if (!regenPop) return;
+    regenPop.remove(); regenPop = null;
+    document.removeEventListener('click', onDocClickRegen, true);
+    document.removeEventListener('keydown', onEscRegen, true);
+  }
+  function onDocClickRegen(e) { if (regenPop && !regenPop.contains(e.target)) closeRegenPop(); }
+  function onEscRegen(e) { if (e.key === 'Escape') closeRegenPop(); }
+  function openRegenPop(btn) {
+    closeRegenPop();
+    if (!MODELS.length) return;
+    const pop = document.createElement('div');
+    pop.className = 'regen-pop glass-strong';
+    pop.setAttribute('role', 'menu');
+    pop.innerHTML = MODELS.map((m) => `<button type="button" role="menuitem" data-regen-model="${esc(m.id)}">${esc(m.name)}</button>`).join('');
+    document.body.appendChild(pop);
+    const r = btn.getBoundingClientRect(), pr = pop.getBoundingClientRect();
+    let left = root.dir === 'rtl' ? r.right - pr.width : r.left;
+    left = Math.max(8, Math.min(left, window.innerWidth - pr.width - 8));
+    let top = r.bottom + 6;
+    if (top + pr.height > window.innerHeight - 8) top = Math.max(8, r.top - pr.height - 6);
+    pop.style.left = left + 'px'; pop.style.top = top + 'px';
+    pop.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-regen-model]');
+      if (!b) return;
+      closeRegenPop();
+      regenerate(b.dataset.regenModel);
+    });
+    regenPop = pop;
+    setTimeout(() => {
+      document.addEventListener('click', onDocClickRegen, true);
+      document.addEventListener('keydown', onEscRegen, true);
+    }, 0);
+  }
+
   msgsEl.addEventListener('click', (e) => {
     const b = e.target.closest('button');
     if (!b) return;
+    if (b.dataset.edit !== undefined) {
+      if (busy) return;
+      editingIdx = +b.dataset.edit; renderMessages(-1);
+      requestAnimationFrame(() => {
+        const ta2 = msgsEl.querySelector(`[data-edit-ta="${editingIdx}"]`);
+        if (ta2) { growEditTa(ta2); ta2.focus(); ta2.selectionStart = ta2.selectionEnd = ta2.value.length; }
+      });
+      return;
+    }
+    if (b.dataset.editCancel !== undefined) { editingIdx = null; renderMessages(-1); return; }
+    if (b.dataset.editSave !== undefined) {
+      const ta2 = msgsEl.querySelector(`[data-edit-ta="${b.dataset.editSave}"]`);
+      commitEdit(+b.dataset.editSave, ta2 ? ta2.value : '');
+      return;
+    }
     if (b.dataset.a) {
       const cb = b.closest('.cb'), code = $('pre', cb).textContent;
       if (b.dataset.a === 'copy') copyText(code).then(() => toast('toast.code'));
@@ -1392,10 +1560,18 @@ html.calm .dots i { animation: none; opacity: .8; }
     if (!m) return;
     if (a === 'copy') copyText(L(m.text)).then(() => toast('toast.text'));
     else if (a === 'regen') regenerate();
+    else if (a === 'regen-menu') openRegenPop(b);
     else {
       m.fb = m.fb === a ? null : a; persist();
       $$('[data-act="up"],[data-act="down"]', art).forEach((x) => x.setAttribute('aria-pressed', String(m.fb === x.dataset.act)));
     }
+  });
+  msgsEl.addEventListener('input', (e) => { const ta2 = e.target.closest('[data-edit-ta]'); if (ta2) growEditTa(ta2); });
+  msgsEl.addEventListener('keydown', (e) => {
+    const ta2 = e.target.closest('[data-edit-ta]');
+    if (!ta2) return;
+    if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); commitEdit(+ta2.dataset.editTa, ta2.value); }
+    else if (e.key === 'Escape') { e.preventDefault(); editingIdx = null; renderMessages(-1); }
   });
 
   /* ---------------------------------------------------------
@@ -1416,14 +1592,14 @@ html.calm .dots i { animation: none; opacity: .8; }
   function stopGen() { if (!busy || !ctrl) return; userStop = true; try { ctrl.abort(); } catch { /* ignore */ } }
   function grow() { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 160) + 'px'; }
 
-  async function respond(convId, freshIdx) {
+  async function respond(convId, freshIdx, forcedModel) {
     const conv = chats.find((x) => x.id === convId);
     if (!conv) return;
     busy = true; pendingConv = convId; streaming = false; userStop = false; setStatus(); updateSend();
     renderMessages(freshIdx); scrollBottom();
     abortPending();
     const my = ctrl = new AbortController();
-    const usedModel = model, sendMode = mode;
+    const usedModel = forcedModel || model, sendMode = mode;
     const history = conv.messages
       .filter((m) => m.role === 'user' || (m.role === 'ai' && !m.err))
       .map((m) => ({ role: m.role === 'ai' ? 'assistant' : 'user', content: String(L(m.text) || '') }));
@@ -1500,15 +1676,16 @@ html.calm .dots i { animation: none; opacity: .8; }
     persist(); renderSidebar();
     respond(c.id, c.messages.length - 1);
   }
-  function regenerate() {
+  function regenerate(forcedModel) {
     if (busy) return;
     const c = active();
     if (!c) return;
     const last = c.messages[c.messages.length - 1];
     if (!last || last.role !== 'ai') return;
-    if (!model) { toast('err.models'); return; }
+    const useModel = forcedModel || model;
+    if (!useModel) { toast('err.models'); return; }
     c.messages.pop(); persist();
-    respond(c.id, -1);
+    respond(c.id, -1, useModel);
   }
 
   composer.addEventListener('submit', (e) => { e.preventDefault(); if (busy) stopGen(); else send(); });
