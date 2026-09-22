@@ -405,6 +405,8 @@ html[lang="en"] .sec-head h2, html[lang="en"] .about-copy h2, html[lang="en"] .c
 @keyframes skel { 0% { background-position: 200% 0; } 100% { background-position: -20% 0; } }
 .models-err { text-align: center; color: var(--muted); font-size: .9rem; margin-top: 16px; }
 .models-err[hidden] { display: none; }
+.models-note { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 6px 14px; border-radius: 999px; background: var(--hi); color: var(--muted); font-size: .84rem; }
+.models-note svg { flex: none; opacity: .8; }
 .badges { display: flex; flex-wrap: wrap; gap: 8px; }
 .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: .82rem; font-weight: 500; color: var(--accent); background: rgba(140, 120, 255, .12); border: 1px solid var(--line); }
 
@@ -795,6 +797,7 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
     <header class="sec-head">
       <h2 data-i18n="models.title">مدل‌های Shadow AI</h2>
       <p data-i18n="models.sub">یکی از مدل‌ها را انتخاب کنید. هر سه مدل برای گفتگو و کدنویسی در دسترس‌اند.</p>
+      <p class="models-note"><svg width="15" height="15" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="models.limit">هر مدل محدودیت ۳۰ ثانیه بین پیام‌ها دارد؛ یعنی در هر دقیقه حداکثر ۲ پیام.</span></p>
     </header>
 
     <div class="model-grid" id="modelGrid" aria-live="polite">
@@ -1023,7 +1026,7 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
       'feat2.d': 'کد بنویسید، خطاها را بررسی کنید، مشکلات را پیدا کنید و پروژه‌های خود را سریع‌تر توسعه دهید.',
       'models.title': 'مدل‌های Shadow AI',
       'models.sub': 'هر سه مدل برای گفتگو و کدنویسی در دسترس‌اند.',
-      'badge.chat': 'گفتگو', 'badge.code': 'کدنویسی', 'models.err': 'مدل‌ها لود نشدند. دوباره امتحان کن.',
+      'badge.chat': 'گفتگو', 'badge.code': 'کدنویسی', 'models.err': 'مدل‌ها لود نشدند. دوباره امتحان کن.', 'models.limit': 'هر مدل محدودیت ۳۰ ثانیه بین پیام‌ها دارد؛ یعنی در هر دقیقه حداکثر ۲ پیام.',
       'pricing.title': 'پلن‌های Shadow AI',
       'pricing.desc': 'برای استفاده از Shadow AI، یکی از بسته‌های توکن را انتخاب کنید.',
       'pricing.note': 'همه بسته‌ها پولی هستند.',
@@ -1078,7 +1081,7 @@ html.calm .trail, html.calm .net-pulse, html.calm .dots { display: none; }
       'feat2.d': 'Write code, review errors, find problems and build your projects faster.',
       'models.title': 'Shadow AI models',
       'models.sub': 'All three models are available for chat and coding.',
-      'badge.chat': 'Chat', 'badge.code': 'Coding', 'models.err': 'Could not load models. Try again.',
+      'badge.chat': 'Chat', 'badge.code': 'Coding', 'models.err': 'Could not load models. Try again.', 'models.limit': 'Each model has a 30-second limit between messages — up to 2 messages per minute.',
       'pricing.title': 'Shadow AI plans',
       'pricing.desc': 'To use Shadow AI, choose one of the token packages.',
       'pricing.note': 'All packages are paid.',
